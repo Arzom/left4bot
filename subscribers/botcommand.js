@@ -15,7 +15,8 @@ module.exports = {
 
 		if (commandObj.command === 'setuser') {
 			client.guilds.cache.get(config.guild_id).members.fetch(commandObj.id).then((member) => {
-				if (member.displayName !== commandObj.nick) member.setNickname(commandObj.nick);
+				if (member.displayName !== commandObj.nick.replace(/§[0-9A-FK-ORa-fk-or]/g, ''))
+					member.setNickname(commandObj.nick.replace(/§[0-9A-FK-ORa-fk-or]/g, ''));
 			});
 
 		} else if (commandObj.command === 'setgroup') {
